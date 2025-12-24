@@ -7,10 +7,16 @@
     box-sizing: border-box;
 }
 
-body {
-    @apply bg-main_bg;
+@layer base {
+
+    html {
+        @apply text-[16px] md:!text-[14px] xl:text-[15px];
+    }
 }
 
-h2 {
-    @apply font-[Forum] font-normal text-5xl;
+body {
+}
+
+.content {
+    @apply max-w-[1512px] mx-auto w-[90%];
 }
