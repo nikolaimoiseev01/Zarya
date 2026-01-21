@@ -11,13 +11,21 @@ export default {
 
     theme: {
         extend: {
+            borderRadius: {
+                '4xl': '2.5rem',
+            },
             fontFamily: {
                 sans: ['Montserrat', ...defaultTheme.fontFamily.sans],
+                alt: ['ABeeZee', 'Montserrat', ...defaultTheme.fontFamily.sans],
+                bim: ['Bim', ...defaultTheme.fontFamily.sans],
             },
             colors: {
                 main_bg: '#ECEBF3',
-                maroon: {
-                    500: '#ECEBF3'
+                orange: {
+                    500: '#FF4D00'
+                },
+                gray: {
+                    500: '#3F3F3F'
                 }
             },
             screens: {
