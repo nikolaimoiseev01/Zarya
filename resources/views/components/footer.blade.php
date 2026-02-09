@@ -2,11 +2,9 @@
     <div class="content flex justify-between gap-8 md:flex-col md:text-center">
         <div class="flex flex-col text-white gap-4">
             <h4 class="text-orange-500 text-2xl mb-6">Навигация</h4>
-            <a href="">Кейсы</a>
+            <a href="#cases">Кейсы</a>
             <a href="">О нас</a>
-            <a href="">Услуги</a>
-            <a href="">Партнерство</a>
-            <a href="">Контакты</a>
+            <a href="#services">Услуги</a>
         </div>
         <div class="flex flex-col text-white">
             <h4 class="text-orange-500 text-2xl mb-6">Свяжитесь с нами</h4>

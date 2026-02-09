@@ -50,13 +50,13 @@
         </div>
     </section>
 
-    <section class="content flex items-end gap-16 mb-20 md:flex-col md:text-center">
+    <section id="cases" class="content flex items-end gap-16 mb-20 md:flex-col md:text-center pt-28 -mt-28 ">
         <h3 class="font-bim text-6xl lg:text-5xl md:text-4xl">Заря - <span class="underline">агентство, превращающее<br> смысл в форму.</span>
             Мы помогаем<br>объяснить сложное и выстроить<br>целостный образ</h3>
-        <a href=""
-           class="text-2xl h-auto px-8 py-3 bg-orange-500 text-white rounded-3xl font-medium transition w-fit flex gap-6 items-center justify-center md:mx-auto">
-            Подробнее
-        </a>
+{{--        <a href=""--}}
+{{--           class="text-2xl h-auto px-8 py-3 bg-orange-500 text-white rounded-3xl font-medium transition w-fit flex gap-6 items-center justify-center md:mx-auto">--}}
+{{--            Подробнее--}}
+{{--        </a>--}}
     </section>
 
     <x-project-modal :description="$project['description']"/>
@@ -110,7 +110,7 @@
         @endforeach
     </section>
 
-    <section class="content flex justify-center gap-96 mb-32 lg:flex-col lg:gap-16">
+    <section id="services" class="content flex justify-center gap-96 mb-32 lg:flex-col lg:gap-16 pt-28 -mt-28 ">
         <h2 class="text-orange-500 text-4xl">Услуги</h2>
 
         @php
@@ -152,7 +152,7 @@
     </section>
 
     <section class="bg-orange-500 py-32 text-black">
-        <div class="flex gap-16 justify-center font-medium text-center text-[4vw] md:text-5xl md:flex-col md:items-center">
+        <div class="flex gap-16 px-4 justify-center font-medium text-center text-[4vw] md:text-5xl md:flex-col md:items-center">
             <span>Заряжаем на успех</span>
             <svg width="69" height="57" viewBox="0 0 69 57" fill="none"
                  xmlns="http://www.w3.org/2000/svg">

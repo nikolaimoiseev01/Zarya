@@ -8,9 +8,9 @@
 
         <!-- ЛЕВО: МЕНЮ (desktop) -->
         <nav class="flex gap-9 text-xl text-white md:hidden">
-            <a href="">Кейсы</a>
-            <a href="">О нас</a>
-            <a href="">Услуги</a>
+            <a href="#cases">Кейсы</a>
+            <a href="#about">О нас</a>
+            <a href="#services">Услуги</a>
         </nav>
 
         <!-- ЛОГО -->
