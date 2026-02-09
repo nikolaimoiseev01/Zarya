@@ -33,7 +33,7 @@
     <section class="section-4 content mb-20">
         <h3 class="uppercase border-b text-2xl font-medium border-black pb-2 mb-8">Проекты, <span
                 class="text-orange-500">Заря</span>женные на успех</h3>
-        <div class="flex gap-16 mx-auto justify-center">
+        <div class="flex gap-16 mx-auto justify-center flex-wrap">
             @foreach($projects->take(4) as $project)
                 <div class="flex flex-col gap-4 items-center">
                     <p class="text-xl font-medium">{{$project['title']}}</p>
@@ -50,17 +50,17 @@
         </div>
     </section>
 
-    <section class="content flex items-end gap-16 mb-20">
-        <h3 class="font-bim text-6xl">Заря - <span class="underline">агентство, превращающее<br> смысл в форму.</span>
+    <section class="content flex items-end gap-16 mb-20 md:flex-col md:text-center">
+        <h3 class="font-bim text-6xl lg:text-5xl md:text-4xl">Заря - <span class="underline">агентство, превращающее<br> смысл в форму.</span>
             Мы помогаем<br>объяснить сложное и выстроить<br>целостный образ</h3>
         <a href=""
-           class="text-2xl h-auto px-8 py-3 bg-orange-500 text-white rounded-3xl font-medium transition w-fit flex gap-6 items-center justify-center">
+           class="text-2xl h-auto px-8 py-3 bg-orange-500 text-white rounded-3xl font-medium transition w-fit flex gap-6 items-center justify-center md:mx-auto">
             Подробнее
         </a>
     </section>
 
     <x-project-modal :description="$project['description']"/>
-    <section class="content grid grid-cols-3 grid-rows-3 mb-32">
+    <section class="content grid grid-cols-3 grid-rows-3 mb-32 lg:grid-cols-2 md:!grid-cols-1">
         @foreach($projects->take(9) as $project)
             <a x-on:click="$dispatch('open-modal', 'confirm-delete');
             $dispatch('change-modal-description', {
@@ -110,7 +110,7 @@
         @endforeach
     </section>
 
-    <section class="content flex justify-center gap-96 mb-32">
+    <section class="content flex justify-center gap-96 mb-32 lg:flex-col lg:gap-16">
         <h2 class="text-orange-500 text-4xl">Услуги</h2>
 
         @php
@@ -131,8 +131,8 @@
 {{--    </section>--}}
 
     <section class="bg-orange-500 py-32">
-        <div class="content flex gap-16">
-            <div class="flex flex-col text-white w-1/2">
+        <div class="content flex gap-16 lg:flex-col">
+            <div class="flex flex-col text-white w-1/2 lg:w-full">
                 <p class="text-6xl font-black mb-16">Давайте<br>создадим<br>что-то новое<br>вместе
                 </p>
                 @php
@@ -152,7 +152,7 @@
     </section>
 
     <section class="bg-orange-500 py-32 text-black">
-        <div class="flex gap-16 text-7xl justify-center font-medium">
+        <div class="flex gap-16 justify-center font-medium text-center text-[4vw] md:text-5xl md:flex-col md:items-center">
             <span>Заряжаем на успех</span>
             <svg width="69" height="57" viewBox="0 0 69 57" fill="none"
                  xmlns="http://www.w3.org/2000/svg">

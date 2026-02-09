@@ -1,5 +1,5 @@
 <footer class="bg-black py-20">
-    <div class="content flex justify-between gap-8">
+    <div class="content flex justify-between gap-8 md:flex-col md:text-center">
         <div class="flex flex-col text-white gap-4">
             <h4 class="text-orange-500 text-2xl mb-6">Навигация</h4>
             <a href="">Кейсы</a>

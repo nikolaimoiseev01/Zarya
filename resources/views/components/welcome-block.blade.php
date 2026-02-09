@@ -31,7 +31,7 @@
 bg-[linear-gradient(180deg,_#211F3D_0%,_#393360_32.83%,_#FF4D00_100%)]
          bg-[length:100%_200%] bg-top overflow-hidden">
 
-        <h1 class="hero-title italic text-4xl text-white text-center fixed">
+        <h1 class="hero-title italic text-4xl text-white text-center fixed px-8">
             ещё один скролл — и наступит заря
         </h1>
     </div>

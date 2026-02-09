@@ -13,15 +13,21 @@
 @layer base {
 
     html {
-        @apply text-[16px] md:!text-[14px] xl:text-[15px] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden;
+        @apply text-[16px] md:!text-[14px] xl:text-[15px] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden scroll-smooth;
+    }
+    body {
+        @apply scroll-smooth;
     }
 }
 
-body {
-}
+
 
 input[type="text"] {
-    @apply bg-transparent border-0 border-b border-white;
+    @apply text-2xl bg-transparent border-0 border-b border-white text-white placeholder:text-white focus:shadow-sm focus:!border-white focus:ring-0;
+}
+
+textarea {
+    @apply text-2xl bg-transparent border rounded-2xl border-white text-white placeholder:text-white placeholder:opacity-50 focus:shadow-sm focus:!border-white focus:ring-0;
 }
 
 .content {
