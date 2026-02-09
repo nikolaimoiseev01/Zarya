@@ -24,6 +24,6 @@ class Marquee extends Component
 
     public function render(): View|Closure|string
     {
-        return view('components.Ui.marquee');
+        return view('components.ui.marquee');
     }
 }
