@@ -1,27 +1,28 @@
 <main class="flex-1">
+    <x-welcome-block/>
 
-    <section style="background-image: url('/fixed/welcome-bg.png')"
-             class="w-full bg-cover h-screen relative flex items-center justify-center mb-20">
-        <div class="flex flex-col relative text-center content">
-            <x-logo color="orange" class="w-96 sm:w-[90%]"/>
-            <h2 class="text-5xl text-white md:text-4xl text-left mb-12">Брендинговое агенство,<br>
-                помогающее FMCG брендам<br>
-                решать ключевые бизнес-<br>
-                задачи через маркетинг<br> и айдентику</h2>
-            <a href=""
-               class="text-2xl px-8 py-3 bg-orange-500 text-white rounded-3xl font-medium transition w-fit flex gap-6 items-center justify-center">
-                Посмотреть кейсы
-                <svg width="30" height="25" viewBox="0 0 30 25" fill="none"
-                     xmlns="http://www.w3.org/2000/svg">
-                    <path
-                        d="M15.6554 0C16.62 0 17.5845 -2.38801e-08 18.5491 0.0241313C18.4254 4.97104 22.2094 9.65251 27.1311 10.7625C28.0462 11.0521 29.0354 11.0039 30 11.1004C30 12.0415 30 12.9826 30 13.8996C28.1451 13.9961 26.2655 14.2616 24.6331 15.1786C20.9728 17.0608 18.5243 20.9459 18.5243 25C17.5598 25 16.5952 25 15.6554 25C15.6307 20.6805 17.8071 16.4334 21.3932 13.8755C14.2704 13.8996 7.12284 13.8755 0 13.8755C0.0247321 12.9585 0.0247321 12.0174 0 11.0763C7.0981 11.1487 14.2209 11.1004 21.3438 11.1245C18.8458 9.19402 16.8425 6.56371 16.1006 3.52317C15.8038 2.389 15.6801 1.18243 15.6554 0Z"
-                        fill="white"/>
-                </svg>
-            </a>
-        </div>
-    </section>
+    {{--    <section style="background-image: url('/fixed/welcome-bg.png')"--}}
+{{--             class="w-full bg-cover h-screen relative flex items-center justify-center mb-20">--}}
+{{--        <div class="flex flex-col relative text-center content">--}}
+{{--            <x-logo color="orange" class="w-96 sm:w-[90%]"/>--}}
+{{--            <h2 class="text-5xl text-white md:text-4xl text-left mb-12">Брендинговое агенство,<br>--}}
+{{--                помогающее FMCG брендам<br>--}}
+{{--                решать ключевые бизнес-<br>--}}
+{{--                задачи через маркетинг<br> и айдентику</h2>--}}
+{{--            <a href=""--}}
+{{--               class="text-2xl px-8 py-3 bg-orange-500 text-white rounded-3xl font-medium transition w-fit flex gap-6 items-center justify-center">--}}
+{{--                Посмотреть кейсы--}}
+{{--                <svg width="30" height="25" viewBox="0 0 30 25" fill="none"--}}
+{{--                     xmlns="http://www.w3.org/2000/svg">--}}
+{{--                    <path--}}
+{{--                        d="M15.6554 0C16.62 0 17.5845 -2.38801e-08 18.5491 0.0241313C18.4254 4.97104 22.2094 9.65251 27.1311 10.7625C28.0462 11.0521 29.0354 11.0039 30 11.1004C30 12.0415 30 12.9826 30 13.8996C28.1451 13.9961 26.2655 14.2616 24.6331 15.1786C20.9728 17.0608 18.5243 20.9459 18.5243 25C17.5598 25 16.5952 25 15.6554 25C15.6307 20.6805 17.8071 16.4334 21.3932 13.8755C14.2704 13.8996 7.12284 13.8755 0 13.8755C0.0247321 12.9585 0.0247321 12.0174 0 11.0763C7.0981 11.1487 14.2209 11.1004 21.3438 11.1245C18.8458 9.19402 16.8425 6.56371 16.1006 3.52317C15.8038 2.389 15.6801 1.18243 15.6554 0Z"--}}
+{{--                        fill="white"/>--}}
+{{--                </svg>--}}
+{{--            </a>--}}
+{{--        </div>--}}
+{{--    </section>--}}
 
-    <section class="content py-8 border-y border-black mb-20">
+    <section class="section-3 mt-8 content py-8 border-y border-black mb-20">
         <h2 class="text-3xl font-medium text-center">Работаем от зари до зари — вместе с лучшими
             брендами</h2>
     </section>
@@ -29,7 +30,7 @@
 
     <x-ui.marquee :marqueeClients="$clients"/>
 
-    <section class="content mb-20">
+    <section class="section-4 content mb-20">
         <h3 class="uppercase border-b text-2xl font-medium border-black pb-2 mb-8">Проекты, <span
                 class="text-orange-500">Заря</span>женные на успех</h3>
         <div class="flex gap-16 mx-auto justify-center">
@@ -58,9 +59,14 @@
         </a>
     </section>
 
-    <section class="content grid grid-cols-3 grid-rows-3">
+    <x-project-modal :description="$project['description']"/>
+    <section class="content grid grid-cols-3 grid-rows-3 mb-32">
         @foreach($projects->take(9) as $project)
-            <div class="group relative aspect-square overflow-hidden text-white cursor-pointer">
+            <a x-on:click="$dispatch('open-modal', 'confirm-delete');
+            $dispatch('change-modal-description', {
+                description: @js($project['description'])
+            });
+        " class="group relative aspect-square overflow-hidden text-white cursor-pointer">
                 {{-- Background image layer --}}
                 <div
                     class="absolute inset-0 bg-cover bg-center
@@ -99,17 +105,30 @@
                         {{ $project['summary'] }}
                     </p>
                 </div>
-            </div>
+            </a>
 
         @endforeach
     </section>
 
-    <section style="background-image: url('fixed/block-2-bg.png')"
-             class="h-screen bg-cover w-full flex items-center justify-center">
-        <h3 class="text-6xl text-white font-black ">
-            Заря -
-        </h3>
+    <section class="content flex justify-center gap-96 mb-32">
+        <h2 class="text-orange-500 text-4xl">Услуги</h2>
+
+        @php
+            $services = ['Брендинг & айдентика', 'Web дизайн & разработка', 'E-commers & прирост ЦА', 'Сувенирка & ивенты']
+        @endphp
+        <div class="flex flex-col">
+            @foreach($services as $service)
+                <span class="text-4xl border-b-2 border-black pb-4 mb-4">{{$service}}</span>
+            @endforeach
+        </div>
     </section>
+
+{{--    <section style="background-image: url('fixed/block-2-bg.png')"--}}
+{{--             class="h-screen bg-cover w-full flex items-center justify-center">--}}
+{{--        <h3 class="text-6xl text-white font-black ">--}}
+{{--            Заря ---}}
+{{--        </h3>--}}
+{{--    </section>--}}
 
     <section class="bg-orange-500 py-32">
         <div class="content flex gap-16">

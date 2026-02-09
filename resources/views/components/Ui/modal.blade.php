@@ -5,74 +5,66 @@
 ])
 
 @php
-$maxWidth = [
-    'sm' => 'sm:max-w-sm',
-    'md' => 'sm:max-w-md',
-    'lg' => 'sm:max-w-lg',
-    'xl' => 'sm:max-w-xl',
-    '2xl' => 'sm:max-w-2xl',
-][$maxWidth];
+    $maxWidth = [
+        'sm'  => 'max-w-sm',
+        'md'  => 'max-w-md',
+        'lg'  => 'max-w-lg',
+        'xl'  => 'max-w-xl',
+        '2xl' => 'max-w-2xl',
+    ][$maxWidth];
 @endphp
 
 <div
-    x-data="{
-        show: @js($show),
-        focusables() {
-            // All focusable element types...
-            let selector = 'a, button, input:not([type=\'hidden\']), textarea, select, details, [tabindex]:not([tabindex=\'-1\'])'
-            return [...$el.querySelectorAll(selector)]
-                // All non-disabled elements...
-                .filter(el => ! el.hasAttribute('disabled'))
-        },
-        firstFocusable() { return this.focusables()[0] },
-        lastFocusable() { return this.focusables().slice(-1)[0] },
-        nextFocusable() { return this.focusables()[this.nextFocusableIndex()] || this.firstFocusable() },
-        prevFocusable() { return this.focusables()[this.prevFocusableIndex()] || this.lastFocusable() },
-        nextFocusableIndex() { return (this.focusables().indexOf(document.activeElement) + 1) % (this.focusables().length + 1) },
-        prevFocusableIndex() { return Math.max(0, this.focusables().indexOf(document.activeElement)) -1 },
-    }"
-    x-init="$watch('show', value => {
-        if (value) {
-            document.body.classList.add('overflow-y-hidden');
-            {{ $attributes->has('focusable') ? 'setTimeout(() => firstFocusable().focus(), 100)' : '' }}
-        } else {
-            document.body.classList.remove('overflow-y-hidden');
-        }
-    })"
-    x-on:open-modal.window="$event.detail == '{{ $name }}' ? show = true : null"
-    x-on:close-modal.window="$event.detail == '{{ $name }}' ? show = false : null"
-    x-on:close.stop="show = false"
+    x-data="{ show: @js($show) }"
+    x-on:open-modal.window="$event.detail === '{{ $name }}' ? show = true : null"
+    x-on:close-modal.window="$event.detail === '{{ $name }}' ? show = false : null"
     x-on:keydown.escape.window="show = false"
-    x-on:keydown.tab.prevent="$event.shiftKey || nextFocusable().focus()"
-    x-on:keydown.shift.tab.prevent="prevFocusable().focus()"
     x-show="show"
-    class="fixed inset-0 overflow-y-auto px-4 py-6 sm:px-0 z-50"
-    style="display: {{ $show ? 'block' : 'none' }};"
+    x-cloak
+    class="fixed inset-0 z-[999] flex items-center justify-center px-6 sm:px-4"
 >
+    <!-- BACKDROP — спокойная ночь -->
     <div
         x-show="show"
-        class="fixed inset-0 transform transition-all"
-        x-on:click="show = false"
-        x-transition:enter="ease-out duration-300"
+        x-transition:enter="ease-out duration-700"
         x-transition:enter-start="opacity-0"
         x-transition:enter-end="opacity-100"
-        x-transition:leave="ease-in duration-200"
+        x-transition:leave="ease-in duration-500"
         x-transition:leave-start="opacity-100"
         x-transition:leave-end="opacity-0"
-    >
-        <div class="absolute inset-0 bg-gray-500 dark:bg-gray-900 opacity-75"></div>
-    </div>
+        class="absolute inset-0
+               bg-[#14132A]/50
+               backdrop-blur-sm"
+        x-on:click="show = false"
+    ></div>
 
+    <!-- MODAL -->
     <div
         x-show="show"
-        class="mb-6 bg-white dark:bg-gray-800 rounded-lg overflow-hidden shadow-xl transform transition-all sm:w-full {{ $maxWidth }} sm:mx-auto"
-        x-transition:enter="ease-out duration-300"
-        x-transition:enter-start="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
-        x-transition:enter-end="opacity-100 translate-y-0 sm:scale-100"
-        x-transition:leave="ease-in duration-200"
-        x-transition:leave-start="opacity-100 translate-y-0 sm:scale-100"
-        x-transition:leave-end="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+        x-transition:enter="ease-out duration-700"
+        x-transition:enter-start="opacity-0 translate-y-12 scale-[0.96] blur-md"
+        x-transition:enter-end="opacity-100 translate-y-0 scale-100 blur-0"
+        x-transition:leave="ease-in duration-500"
+        x-transition:leave-start="opacity-100 translate-y-0 scale-100 blur-0"
+        x-transition:leave-end="opacity-0 translate-y-12 scale-[0.96] blur-md"
+        class="
+            relative w-full {{ $maxWidth }}
+            rounded
+            overflow-hidden
+            text-black
+            bg-white
+            shadow-[0_20px_60px_rgba(0,0,0,0.45)]
+        "
     >
-        {{ $slot }}
+        <!-- тонкая «заря» сверху -->
+        <div
+            class="absolute inset-x-0 top-0 h-px
+                   bg-gradient-to-r from-transparent via-orange-500/40 to-transparent">
+        </div>
+
+        <!-- CONTENT -->
+        <div class="relative p-4 lg:p-10 md:p-8 sm:p-6 font-sans">
+            {{ $slot }}
+        </div>
     </div>
 </div>

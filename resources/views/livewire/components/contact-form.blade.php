@@ -1,21 +1,9 @@
 <form class="flex flex-col flex-1">
     <div class="grid grid-cols-2 text-white gap-4 mb-16">
-        <div class="flex flex-col flex-1">
-            <input required wire:model="name" id="name" type="text">
-            <label for="name">Имя*</label>
-        </div>
-        <div class="flex flex-col flex-1">
-            <input required wire:model="name" id="name" type="text">
-            <label for="name">Компания*</label>
-        </div>
-        <div class="flex flex-col flex-1">
-            <input required wire:model="name" id="name" type="text">
-            <label for="name">Телефон*</label>
-        </div>
-        <div class="flex flex-col flex-1">
-            <input required wire:model="name" id="name" type="text">
-            <label for="name">E-mail*</label>
-        </div>
+        <x-ui.text-input model="name" label="Имя"/>
+        <x-ui.text-input model="Компания" label="Компания"/>
+        <x-ui.text-input model="Телефон" label="Телефон"/>
+        <x-ui.text-input model="E-mail" label="E-mail"/>
         <textarea placeholder="Комментарий" class="col-span-2"></textarea>
     </div>
 

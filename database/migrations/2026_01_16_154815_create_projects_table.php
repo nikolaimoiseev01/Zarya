@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('title');
             $table->string('summary');
             $table->json('services');
+            $table->text('description');
             $table->timestamps();
         });
     }

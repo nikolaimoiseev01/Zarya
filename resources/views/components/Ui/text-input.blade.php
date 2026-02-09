@@ -1,3 +1,8 @@
-@props(['disabled' => false])
-
-<input @disabled($disabled) {{ $attributes->merge(['class' => 'border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm']) }}>
+@props([
+    'model',
+    'label'
+])
+<div class="flex flex-col flex-1">
+    <input required wire:model="{{$model}}" id="{{$model}}" type="text">
+    <label for="{{$model}}">{{$label}}*</label>
+</div>

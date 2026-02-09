@@ -123,4 +123,11 @@ return [
         'store' => env('APP_MAINTENANCE_STORE', 'database'),
     ],
 
+
+    'admin' => [
+        'email' => ENV('ADMIN_LOGIN', 'admin@mail.ru'),
+        'password' => ENV('ADMIN_PASSWORD', '12345678')
+    ],
+
+
 ];

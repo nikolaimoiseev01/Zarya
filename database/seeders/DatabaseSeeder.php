@@ -8,6 +8,7 @@ use App\Models\User;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
 
 class DatabaseSeeder extends Seeder
 {
@@ -31,37 +32,64 @@ class DatabaseSeeder extends Seeder
             'title' => 'Вкусвилл',
             'services' => ['Нарратив бренда', 'Линейка продуктов'],
             'summary' => 'Разработка локального бренда',
-            'cover' => 'project-1.png'
+            'cover' => 'project-1.png',
+            'description' => 'Описание проекта'
         ],
         [
             'title' => 'Ямал',
             'services' => ['Дизайн бренда', 'Указка продуктов'],
             'summary' => 'Переработка фикального тренда',
-            'cover' => 'project-2.png'
+            'cover' => 'project-2.png',
+            'description' => 'Описание проекта'
         ],
         [
             'title' => 'Вкусвилл',
             'services' => ['Нарратив бренда', 'Линейка продуктов'],
             'summary' => 'Разработка локального бренда',
-            'cover' => 'project-1.png'
+            'cover' => 'project-1.png',
+            'description' => 'Описание проекта'
         ],
         [
             'title' => 'Ямал',
             'services' => ['Дизайн бренда', 'Указка продуктов'],
             'summary' => 'Переработка фикального тренда',
-            'cover' => 'project-2.png'
+            'cover' => 'project-2.png',
+            'description' => 'Описание проекта'
         ],
         [
             'title' => 'Вкусвилл',
             'services' => ['Нарратив бренда', 'Линейка продуктов'],
             'summary' => 'Разработка локального бренда',
-            'cover' => 'project-1.png'
+            'cover' => 'project-1.png',
+            'description' => 'Описание проекта'
         ],
         [
             'title' => 'Ямал',
             'services' => ['Дизайн бренда', 'Указка продуктов'],
             'summary' => 'Переработка фикального тренда',
-            'cover' => 'project-2.png'
+            'cover' => 'project-2.png',
+            'description' => 'Описание проекта'
+        ],
+        [
+            'title' => 'Ямал',
+            'services' => ['Дизайн бренда', 'Указка продуктов'],
+            'summary' => 'Переработка фикального тренда',
+            'cover' => 'project-2.png',
+            'description' => 'Описание проекта'
+        ],
+        [
+            'title' => 'Вкусвилл',
+            'services' => ['Нарратив бренда', 'Линейка продуктов'],
+            'summary' => 'Разработка локального бренда',
+            'cover' => 'project-1.png',
+            'description' => 'Описание проекта'
+        ],
+        [
+            'title' => 'Ямал',
+            'services' => ['Дизайн бренда', 'Указка продуктов'],
+            'summary' => 'Переработка фикального тренда',
+            'cover' => 'project-2.png',
+            'description' => 'Описание проекта'
         ]
     ];
 
@@ -80,16 +108,19 @@ class DatabaseSeeder extends Seeder
             $newProject = Project::create([
                 'title' => $project['title'],
                 'services' => $project['services'],
-                'summary' => $project['summary']
+                'summary' => $project['summary'],
+                'description' => $project['description'] . $project['title'],
             ]);
             $newProject->addMedia(public_path("fixed/test/{$project['cover']}"))
                 ->preservingOriginal()
                 ->toMediaCollection('cover');
         };
 
-        User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
+        \App\Models\User::firstOrCreate([
+            'name' => 'Admin Name',
+            'email' => config('app.admin.email'),
+            'email_verified_at' => now(),
+            'password' => Hash::make(config('app.admin.password'))
         ]);
     }
 }

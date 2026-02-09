@@ -10,11 +10,20 @@ class IndexPage extends Component
 {
     public $clients;
     public $projects;
+    public $modalProject;
 
     public function render()
     {
         $this->clients = Client::with('media')->get();
         $this->projects = Project::with('media')->get();
         return view('livewire.pages.portal.index-page');
+    }
+
+    public function changeModalProject($id) {
+        $this->modalProject = $this->projects->where('id', $id);
+
+        $this->dispatch('open-modal', [
+            'name' => 'project-modal'
+        ]);
     }
 }
