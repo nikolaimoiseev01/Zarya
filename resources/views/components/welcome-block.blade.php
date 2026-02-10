@@ -31,7 +31,7 @@
 bg-[linear-gradient(180deg,_#211F3D_0%,_#393360_32.83%,_#FF4D00_100%)]
          bg-[length:100%_200%] bg-top overflow-hidden">
 
-        <h1 class="hero-title italic text-4xl text-white text-center fixed px-8">
+        <h1 class="hero-title italic text-4xl text-white text-center fixed px-8 z-30">
             ещё один скролл — и наступит заря
         </h1>
     </div>
@@ -57,38 +57,38 @@ bg-[linear-gradient(180deg,_#211F3D_0%,_#393360_32.83%,_#FF4D00_100%)]
                 <x-logo class="logo-core w-80 sm:w-[90%]" color="white"/>
             </div>
 
-            <!-- KPI GROUP -->
-            <div class="kpi kpi-1 absolute left-[12%] top-[28%] text-white">
-                <p class="text-5xl font-semibold">15+</p>
-                <span class="text-lg opacity-70">успешных кейсов</span>
-            </div>
+{{--            <!-- KPI GROUP -->--}}
+{{--            <div class="kpi kpi-1 absolute left-[12%] top-[28%] text-white">--}}
+{{--                <p class="text-5xl font-semibold">15+</p>--}}
+{{--                <span class="text-lg opacity-70">успешных кейсов</span>--}}
+{{--            </div>--}}
 
-            <div class="kpi kpi-2 absolute right-[14%] top-[30%] text-white text-right">
-                <p class="text-5xl font-semibold">7 лет</p>
-                <span class="text-lg opacity-70">в FMCG</span>
-            </div>
+{{--            <div class="kpi kpi-2 absolute right-[14%] top-[30%] text-white text-right">--}}
+{{--                <p class="text-5xl font-semibold">7 лет</p>--}}
+{{--                <span class="text-lg opacity-70">в FMCG</span>--}}
+{{--            </div>--}}
 
-            <div class="kpi kpi-3 absolute left-[18%] bottom-[28%] text-white">
-                <p class="text-5xl font-semibold">30%</p>
-                <span class="text-lg opacity-70">рост продаж</span>
-            </div>
+{{--            <div class="kpi kpi-3 absolute left-[18%] bottom-[28%] text-white">--}}
+{{--                <p class="text-5xl font-semibold">30%</p>--}}
+{{--                <span class="text-lg opacity-70">рост продаж</span>--}}
+{{--            </div>--}}
 
-            <div class="kpi kpi-4 absolute right-[18%] bottom-[26%] text-white text-right">
-                <p class="text-5xl font-semibold">50+</p>
-                <span class="text-lg opacity-70">бренд-проектов</span>
-            </div>
+{{--            <div class="kpi kpi-4 absolute right-[18%] bottom-[26%] text-white text-right">--}}
+{{--                <p class="text-5xl font-semibold">50+</p>--}}
+{{--                <span class="text-lg opacity-70">бренд-проектов</span>--}}
+{{--            </div>--}}
 
-            <div class="kpi kpi-5 absolute left-1/2 bottom-[18%] -translate-x-1/2 text-white text-center">
-                <p class="text-xl opacity-80">
-                    стратегия → айдентика → рост
-                </p>
-            </div>
+{{--            <div class="kpi kpi-5 absolute left-1/2 bottom-[18%] -translate-x-1/2 text-white text-center">--}}
+{{--                <p class="text-xl opacity-80">--}}
+{{--                    стратегия → айдентика → рост--}}
+{{--                </p>--}}
+{{--            </div>--}}
 
-            <div class="kpi kpi-6 absolute left-1/2 top-[18%] -translate-x-1/2 text-white text-center">
-                <p class="text-xl uppercase tracking-widest opacity-70">
-                    branding as a business tool
-                </p>
-            </div>
+{{--            <div class="kpi kpi-6 absolute left-1/2 top-[18%] -translate-x-1/2 text-white text-center">--}}
+{{--                <p class="text-xl uppercase tracking-widest opacity-70">--}}
+{{--                    branding as a business tool--}}
+{{--                </p>--}}
+{{--            </div>--}}
 
             <div class="brand-description text-white text-center">
                 <h1 class="text-2xl uppercase tracking-widest opacity-70">
@@ -121,8 +121,17 @@ bg-[linear-gradient(180deg,_#211F3D_0%,_#393360_32.83%,_#FF4D00_100%)]
 
     // INTRO TIMELINE
     const introTl = gsap.timeline({
-        delay: 0.5,
+        paused: true,
     });
+
+    window.addEventListener('preloader:done', () => {
+        introTl.play();
+
+    });
+
+    if (sessionStorage.getItem('preloaderShown') === '1') {
+        introTl.play();
+    }
 
     introTl.to(split.chars, {
         opacity: 1,
@@ -289,7 +298,7 @@ bg-[linear-gradient(180deg,_#211F3D_0%,_#393360_32.83%,_#FF4D00_100%)]
             ease: "none",
             duration: 2,
         },
-        8
+        5
     );
 
     /* --------------------------------------------------
@@ -336,7 +345,7 @@ bg-[linear-gradient(180deg,_#211F3D_0%,_#393360_32.83%,_#FF4D00_100%)]
                 });
             },
         },
-        8
+        5
     );
 
 

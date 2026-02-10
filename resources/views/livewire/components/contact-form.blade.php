@@ -29,43 +29,16 @@
         bg-white
         py-4 rounded-full
         transition-all duration-300 ease-out
-        hover:scale-[1.03]
         active:scale-[0.97]
         focus:outline-none
+        cursor-pointer
         focus:ring-4 focus:ring-white/40
         mb-8
         group
     "
         :disabled="sent"
     >
-        <span  x-show="!sent" class="relative z-10">Оставить заявку</span>
-
-        <!-- Анимированный слой -->
-        <span
-            class="
-            absolute inset-0
-            bg-[#35305B]
-            translate-y-full
-            group-hover:translate-y-0
-            transition-transform duration-500 ease-out
-        "
-        ></span>
-
-        <!-- Текст при hover -->
-        <span
-            x-show="!sent"
-            class="
-            absolute inset-0
-            flex items-center justify-center
-            text-white
-            opacity-0
-            group-hover:opacity-100
-            transition-opacity duration-300
-            z-10
-        "
-        >
-        Оставить заявку
-    </span>
+        <span  x-show="!sent" class="relative z-10 cursor-pointer">Оставить заявку</span>
 
         <!-- SUCCESS -->
         <span
@@ -73,8 +46,8 @@
             x-transition.scale
             class="relative z-10 flex items-center justify-center gap-3"
         >
-            <span class="text-3xl group-hover:text-white transition">✓</span>
-            <span class="group-hover:text-white transition">Заявка отправлена</span>
+            <span class="text-3xl transition">✓</span>
+            <span class=" transition">Заявка отправлена</span>
         </span>
     </button>
 

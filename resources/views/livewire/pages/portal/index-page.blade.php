@@ -33,7 +33,7 @@
     <section class="section-4 content mb-20">
         <h3 class="uppercase border-b text-2xl font-medium border-black pb-2 mb-8">Проекты, <span
                 class="text-orange-500">Заря</span>женные на успех</h3>
-        <div class="flex gap-16 mx-auto justify-center flex-wrap">
+        <div class="grid grid-cols-4 md:grid-cols-2 sm:!grid-cols-1 gap-16 mx-auto justify-center">
             @foreach($projects->take(4) as $project)
                 <div class="flex flex-col gap-4 items-center">
                     <p class="text-xl font-medium">{{$project['title']}}</p>
@@ -133,7 +133,7 @@
     <section class="bg-orange-500 py-32">
         <div class="content flex gap-16 lg:flex-col">
             <div class="flex flex-col text-white w-1/2 lg:w-full">
-                <p class="text-6xl font-black mb-16">Давайте<br>создадим<br>что-то новое<br>вместе
+                <p class="text-6xl font-medium mb-16">Давайте<br>создадим<br>что-то новое<br>вместе
                 </p>
                 @php
                     $cons = ['УПАКОВКА', 'РЕБРЕНДИНГ / РЕДИЗАЙН',
