@@ -20,67 +20,74 @@
     }
 </style>
 <script type="module">
-
-    const hasSeenPreloader = sessionStorage.getItem('preloaderShown') === '1';
     const preloader = document.getElementById('preloader');
 
-    if (!hasSeenPreloader) {
-        document.body.classList.add('cursor-hidden');
-    } else {
-        const preloader = document.getElementById('preloader');
-        if (preloader) preloader.remove();
-    }
 
+    document.body.classList.add('cursor-hidden');
 
-    if (!hasSeenPreloader && preloader) {
+    const preTl = gsap.timeline({
+        defaults: { ease: 'power2.out' },
+        onComplete: () => {
+            preloader.remove();
+            document.body.classList.remove('cursor-hidden');
 
-        const preTl = gsap.timeline({
-            onComplete: () => {
-                sessionStorage.setItem('preloaderShown', '1');
-                preloader.remove();
-                document.body.classList.remove('cursor-hidden');
+            // 🔑 сигнал сцене
+            window.dispatchEvent(new Event('preloader:done'));
+        }
+    });
 
-                // 🔑 СИГНАЛ ВСЕМ СЦЕНАМ
-                window.dispatchEvent(new Event('preloader:done'));
-            }
-        });
+    /* --------------------------------
+       ☀️ DOT — РОЖДЕНИЕ
+    -------------------------------- */
+    preTl.fromTo(
+        '.preloader-dot',
+        { scale: 0.4, opacity: 0 },
+        {
+            scale: 1.15,
+            opacity: 1,
+            duration: 1.2,
+            ease: 'power3.out',
+        }
+    );
 
-        preTl
-            .fromTo(
-                '.preloader-dot',
-                { scale: 0.4, opacity: 0 },
-                {
-                    scale: 1.2,
-                    opacity: 1,
-                    duration: 1.2,
-                    ease: 'power3.out',
-                }
-            )
-            .to(
-                '.preloader-dot',
-                {
-                    scale: 8,
-                    opacity: 0,
-                    filter: 'blur(20px)',
-                    duration: 1.1,
-                    ease: 'power4.inOut',
-                },
-                '+=0.4'
-            )
-            .to(
-                '#preloader',
-                {
-                    opacity: 0,
-                    duration: 0.6,
-                    ease: 'power2.out',
-                },
-                '<'
-            );
+    /* --------------------------------
+       🌤 DOT — ЗАТУХАНИЕ (мягко)
+    -------------------------------- */
+    preTl.to(
+        '.preloader-dot',
+        {
+            scale: 3.5,
+            opacity: 0,
+            filter: 'blur(14px)',
+            duration: 1.4,
+            ease: 'sine.inOut',
+        },
+        '+=0.2'
+    );
 
-    } else {
-        // если прелоадер не нужен — сразу разрешаем всё
-        document.body.classList.remove('cursor-hidden');
-    }
+    /* --------------------------------
+       🌫 ПАУЗА — «вдох»
+    -------------------------------- */
+    preTl.to(
+        {},
+        {
+            duration: 0.4,
+        }
+    );
+
+    /* --------------------------------
+       🌑 ФОН — СПОКОЙНОЕ РАСТВОРЕНИЕ
+    -------------------------------- */
+    preTl.to(
+        '#preloader',
+        {
+            opacity: 0,
+            scale: 1.02,
+            duration: 1.1,
+            ease: 'power1.out',
+        }
+    );
+
 
 </script>
 

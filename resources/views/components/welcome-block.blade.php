@@ -101,7 +101,7 @@ bg-[linear-gradient(180deg,_#211F3D_0%,_#393360_32.83%,_#FF4D00_100%)]
     </div>
 </section>
 
-<script src="https://unpkg.com/split-type"></script>
+<script src="/js/split-type.js"></script>
 <script type="module">
     gsap.registerPlugin(ScrollTrigger);
 
@@ -125,13 +125,13 @@ bg-[linear-gradient(180deg,_#211F3D_0%,_#393360_32.83%,_#FF4D00_100%)]
     });
 
     window.addEventListener('preloader:done', () => {
-        introTl.play();
+        setTimeout(function() {
+            introTl.play();
+        }, 200)
+
 
     });
 
-    if (sessionStorage.getItem('preloaderShown') === '1') {
-        introTl.play();
-    }
 
     introTl.to(split.chars, {
         opacity: 1,
@@ -156,8 +156,7 @@ bg-[linear-gradient(180deg,_#211F3D_0%,_#393360_32.83%,_#FF4D00_100%)]
     }, '>-0.4');
 
 
-    // скрываем сразу
-    document.body.classList.add("cursor-hidden");
+
 
     /* ==================================================
        🌑 SECTION 1 — TEXT DISSOLVE (ночь уходит)
