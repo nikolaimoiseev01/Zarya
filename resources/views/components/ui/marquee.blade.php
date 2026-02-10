@@ -173,7 +173,5 @@
                 })
             )
         })
-
-        Alpine.start()
     </script>
 </section>
