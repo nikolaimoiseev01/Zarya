@@ -38,7 +38,7 @@
              x-data="Marquee({speed: 0.5, spaceX: 16, dynamicWidthElements: true})">
             @foreach($clients1 as $key=>$client)
                 <div class="flex-shrink-0 flex items-center gap-2">
-                    <img src="{{$client->getFirstMediaUrl('cover')}}" class="max-h-20 w-auto">
+                    <img src="{{$client->getFirstMediaUrl('cover')}}" class="max-h-20 h-20 min-h-20 w-20 min-w-20 rounded-full">
                     <span class="font-bim text-3xl font-medium uppercase">{{$client['name']}}</span>
                 </div>
             @endforeach
@@ -48,7 +48,7 @@
              x-data="Marquee({speed: 0.5, spaceX: 16, dynamicWidthElements: true})">
             @foreach($clients2 as $key=>$client)
                 <div class="flex-shrink-0 flex items-center gap-2">
-                    <img src="{{$client->getFirstMediaUrl('cover')}}" class="max-h-20 w-auto">
+                    <img src="{{$client->getFirstMediaUrl('cover')}}" class="max-h-20 h-20 min-h-20 w-20 min-w-20 rounded-full">
                     <span class="font-alt text-3xl font-medium uppercase">{{$client['name']}}</span>
                 </div>
             @endforeach

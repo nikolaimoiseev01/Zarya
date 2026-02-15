@@ -27,12 +27,14 @@ class ProjectsTable
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
+            ->reorderable('order')
             ->filters([
                 //
             ])
             ->recordActions([
                 EditAction::make(),
             ])
+            ->defaultSort('order')
             ->toolbarActions([
                 BulkActionGroup::make([
                     DeleteBulkAction::make(),

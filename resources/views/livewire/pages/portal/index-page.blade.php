@@ -38,7 +38,7 @@
                 <div class="flex flex-col gap-4 items-center">
                     <p class="text-xl font-medium">{{$project['title']}}</p>
                     <img src="{{$project->getFirstMediaUrl('cover')}}"
-                         class="rounded-full overflow-hidden object-cover" alt="">
+                         class="rounded-full w-64 h-64 min-h-64 min-w-64 overflow-hidden object-cover" alt="">
                     <div class="flex flex-col items-center gap-2">
                         @foreach($project['services'] as $service)
                             <span

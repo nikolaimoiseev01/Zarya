@@ -29,6 +29,7 @@ class ProjectForm
                         )->grid(4),
                     SpatieMediaLibraryFileUpload::make('cover')
                         ->required()
+                        ->disk('public')
                         ->collection('cover'),
                 ])->columnSpanFull()
 

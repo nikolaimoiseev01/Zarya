@@ -16,6 +16,7 @@ class ClientForm
                     ->required(),
                 SpatieMediaLibraryFileUpload::make('cover')
                     ->required()
+                    ->disk('public')
                     ->collection('cover'),
             ]);
     }

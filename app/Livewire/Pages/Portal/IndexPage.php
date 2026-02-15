@@ -15,7 +15,7 @@ class IndexPage extends Component
     public function render()
     {
         $this->clients = Client::with('media')->get();
-        $this->projects = Project::with('media')->get();
+        $this->projects = Project::with('media')->orderBy('order')->get();
         return view('livewire.pages.portal.index-page');
     }
 
